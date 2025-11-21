@@ -11,8 +11,7 @@ body {
     color: var(--cp-yellow);
     font-family: 'Oxanium', sans-serif;
     overflow-x: hidden;
-    /* 自定义鼠标指针 (SVG Data URI) */
-    cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L10.5 28L15 18L26 15L2 2Z" fill="%23FCEE0A" stroke="%23FF003C" stroke-width="1.5"/></svg>'), auto;
+    cursor: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="2,2 14,38 19,25 38,19 2,2" fill="%2300F0FF" stroke="%23FCEE0A" stroke-width="2"/><polyline points="6,6 16,34 20,24 34,20 6,6" fill="none" stroke="%23FF003C" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="%23FCEE0A" stroke="%23FF003C" stroke-width="0.8"/></svg>') 4 4, pointer;
 }
 
 /* 选中文字效果 */
