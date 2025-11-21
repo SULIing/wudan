@@ -1,0 +1,194 @@
+/* --- 核心样式与动画 --- */
+:root {
+    --cp-yellow: #FCEE0A;
+    --cp-blue: #00F0FF;
+    --cp-red: #FF003C;
+    --bg-color: #050505;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--cp-yellow);
+    font-family: 'Oxanium', sans-serif;
+    overflow-x: hidden;
+    /* 自定义鼠标指针 (SVG Data URI) */
+    cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L10.5 28L15 18L26 15L2 2Z" fill="%23FCEE0A" stroke="%23FF003C" stroke-width="1.5"/></svg>'), auto;
+}
+
+/* 选中文字效果 */
+::selection {
+    background: var(--cp-red);
+    color: white;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--cp-red);
+}
+
+/* 背景网格动画 */
+.bg-grid {
+    background-size: 40px 40px;
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    z-index: -1;
+}
+
+/* 扫描线效果 */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.3;
+}
+
+/* 切角边框 (Cyberpunk UI 核心) */
+.cp-box {
+    clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - 20px), 
+        calc(100% - 20px) 100%, 
+        0 100%
+    );
+    border-left: 4px solid var(--cp-yellow);
+    position: relative;
+}
+
+.cp-box::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 2px;
+    background: var(--cp-yellow);
+    transform: rotate(45deg);
+    transform-origin: bottom right;
+}
+
+/* 故障文字效果 (Glitch) */
+.glitch {
+    position: relative;
+}
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+}
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 var(--cp-red);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 var(--cp-blue);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(34px, 9999px, 11px, 0); }
+    5% { clip: rect(68px, 9999px, 96px, 0); }
+    10% { clip: rect(12px, 9999px, 5px, 0); }
+    15%, 100% { clip: rect(0, 0, 0, 0); }
+}
+@keyframes glitch-anim2 {
+    0% { clip: rect(14px, 9999px, 81px, 0); }
+    5% { clip: rect(28px, 9999px, 46px, 0); }
+    10% { clip: rect(92px, 9999px, 35px, 0); }
+    15%, 100% { clip: rect(0, 0, 0, 0); }
+}
+
+/* 按钮样式 */
+.cp-btn {
+    background: transparent;
+    border: 1px solid var(--cp-blue);
+    color: var(--cp-blue);
+    position: relative;
+    transition: all 0.2s;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+.cp-btn:hover {
+    background: var(--cp-blue);
+    color: black;
+    box-shadow: 0 0 15px var(--cp-blue);
+    text-shadow: none;
+}
+.cp-btn:active {
+    transform: scale(0.98);
+}
+
+/* 输入框样式 */
+.cp-input {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid #333;
+    border-bottom: 2px solid var(--cp-red);
+    transition: all 0.3s;
+}
+.cp-input:focus {
+    border-color: var(--cp-blue);
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+/* 图片故障滤镜 */
+.img-cyber {
+    filter: grayscale(100%) contrast(1.2);
+    transition: filter 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.img-cyber:hover {
+    filter: grayscale(0%) contrast(1) drop-shadow(0 0 8px var(--cp-blue));
+}
+
+/* 加载动画层 */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 0.5s;
+}
+.loader-bar {
+    width: 300px;
+    height: 4px;
+    background: #333;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.loader-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--cp-yellow);
+    width: 0%;
+    animation: load 2s ease-in-out forwards;
+}
+@keyframes load { to { width: 100%; } }
