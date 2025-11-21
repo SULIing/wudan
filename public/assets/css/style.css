@@ -11,9 +11,11 @@ body {
     color: var(--cp-yellow);
     font-family: 'Oxanium', sans-serif;
     overflow-x: hidden;
-    cursor: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="2,2 14,38 19,25 38,19 2,2" fill="%2300F0FF" stroke="%23FCEE0A" stroke-width="2"/><polyline points="6,6 16,34 20,24 34,20 6,6" fill="none" stroke="%23FF003C" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="%23FCEE0A" stroke="%23FF003C" stroke-width="0.8"/></svg>') 4 4, pointer;
+    cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4 L28 16 L16 28 L4 16 Z" stroke="%23FF003C" stroke-width="2" fill="none"/><rect x="15" y="15" width="2" height="2" fill="%23FF003C"/></svg>') 16 16, auto;
 }
-
+a, button, input, textarea, .interactive {
+     cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 2 L30 16 L16 30 L2 16 Z" stroke="%2300F0FF" stroke-width="2" fill="none"/><rect x="14" y="14" width="4" height="4" fill="%2300F0FF"/></svg>') 16 16, pointer;
+}
 /* 选中文字效果 */
 ::selection {
     background: var(--cp-red);
